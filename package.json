@@ -3,19 +3,53 @@
   "dependencies": {
     "next": "^7.0.2",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "redux-saga": "^0.16.2"
   },
   "devDependencies": {
+    "eslint": "^5.11.1",
+    "eslint-config-jsdoc-strict": "^1.0.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-react-redux": "^1.0.6",
+    "eslint-plugin-jsdoc": "^3.14.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.15.3"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint": "prettier --list-different '**/*'"
+    "lint": "run-p lint:*",
+    "lint:prettier": "prettier --list-different '**/*'",
+    "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern src/serviceWorker.js --ext .js,.jsx ."
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-redux",
+      "jsdoc-strict",
+      "plugin:prettier/recommended",
+      "prettier",
+      "prettier/react",
+      "prettier/unicorn"
+    ],
+    "rules": {
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".jsx"
+          ]
+        }
+      ],
+      "fp/no-class": "off",
+      "fp/no-this": "off",
+      "fp/no-rest-parameters": "off",
+      "jsdoc/require-example": "off"
+    }
   }
 }
