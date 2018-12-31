@@ -5,9 +5,17 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
+  "devDependencies": {
+    "prettier": "^1.15.3"
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "prettier --list-different '**/*'"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }

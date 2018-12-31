@@ -1,0 +1,7 @@
+/.next/
+/.*ignore
+*.ico
+*.jpg
+*.lock
+*.png
+*.svg
