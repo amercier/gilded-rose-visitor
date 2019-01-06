@@ -4,7 +4,7 @@ import {
   doStopPollingItems,
   doFetchItems,
   doSetItems,
-  doFetchItemError,
+  doFetchItemsError,
 } from '../actions/item';
 
 describe('itemReducer', () => {
@@ -63,18 +63,21 @@ describe('itemReducer', () => {
       const ERROR = new Error();
       const { fetchItemsError } = itemReducer(
         prevState,
-        doFetchItemError(ERROR),
+        doFetchItemsError(ERROR),
       );
       expect(fetchItemsError).toBe(ERROR);
     });
 
     it('sets fetchingItems to false', () => {
-      const { fetchingItems } = itemReducer(prevState, doFetchItemError({}));
+      const { fetchingItems } = itemReducer(prevState, doFetchItemsError({}));
       expect(fetchingItems).toBe(false);
     });
 
     it('sets fetchedItemsOnce to true', () => {
-      const { fetchedItemsOnce } = itemReducer(prevState, doFetchItemError({}));
+      const { fetchedItemsOnce } = itemReducer(
+        prevState,
+        doFetchItemsError({}),
+      );
       expect(fetchedItemsOnce).toBe(true);
     });
 
@@ -84,7 +87,7 @@ describe('itemReducer', () => {
         fetchingItems,
         fetchedItemsOnce,
         ...rest
-      } = itemReducer(prevState, doFetchItemError());
+      } = itemReducer(prevState, doFetchItemsError());
       expect(prevState).toMatchObject(rest);
     });
   });
@@ -123,4 +126,8 @@ describe('itemReducer', () => {
       expect(prevState).toMatchObject(rest);
     });
   });
+
+  // TODO Add specs for ITEM_FETCH
+  // TODO Add specs for ITEM_FETCH_ERROR
+  // TODO Add specs for ITEM_SET
 });
