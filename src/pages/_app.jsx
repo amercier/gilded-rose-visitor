@@ -16,7 +16,7 @@ class App extends NextApp {
    * @param {Object} input.context - Context.
    * @returns {Promise<Object>} An object containing page props.
    */
-  static async getInitialProps({ Component, context }) {
+  static async getInitialProps({ Component, context = {} }) {
     const pageProps = Component.getInitialProps
       ? await Component.getInitialProps(context)
       : {};
