@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
     "next": "^7.0.2",
     "next-redux-wrapper": "^2.1.0",
     "react": "^16.7.0",
@@ -61,6 +62,7 @@
       "fp/no-let": "off",
       "fp/no-loops": "off",
       "fp/no-this": "off",
+      "fp/no-throw": "off",
       "fp/no-mutation": "off",
       "fp/no-rest-parameters": "off",
       "jsdoc/no-undefined-types": "off",

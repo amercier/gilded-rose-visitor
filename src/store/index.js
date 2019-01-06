@@ -3,6 +3,7 @@ import { createLogger } from 'redux-logger';
 import createCliLogger from 'redux-cli-logger';
 import createSagaMiddleware from 'redux-saga';
 import itemReducer from '../reducers/item';
+import { doStartPollingItems } from '../actions/item';
 import rootSaga from '../sagas';
 
 /**
@@ -25,6 +26,9 @@ export default function makeStore() {
 
   // Run the root saga (ie: start listening for actions)
   saga.run(rootSaga);
+
+  // Start items polling
+  store.dispatch(doStartPollingItems());
 
   return store;
 }
