@@ -9,17 +9,38 @@ exports[`Index renders a list of items 1`] = `
     <li
       key="a"
     >
-      ITEM A
+      <Link
+        as="/i/a"
+        href="/item?id=a"
+      >
+        <a>
+          ITEM A
+        </a>
+      </Link>
     </li>
     <li
       key="b"
     >
-      ITEM B
+      <Link
+        as="/i/b"
+        href="/item?id=b"
+      >
+        <a>
+          ITEM B
+        </a>
+      </Link>
     </li>
     <li
       key="c"
     >
-      ITEM C
+      <Link
+        as="/i/c"
+        href="/item?id=c"
+      >
+        <a>
+          ITEM C
+        </a>
+      </Link>
     </li>
   </ul>
 </div>

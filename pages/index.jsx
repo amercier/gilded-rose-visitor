@@ -1,6 +1,7 @@
 import React from 'react';
 import { string, number, arrayOf, shape } from 'prop-types';
 import { connect } from 'react-redux';
+import Link from 'next/link';
 import { doStartPollingItems, doFetchItems } from '../lib/actions/item';
 
 /**
@@ -15,7 +16,11 @@ const Index = ({ items }) => (
     <p>Hello Next.js</p>
     <ul>
       {items.map(item => (
-        <li key={item.id}>{item.name}</li>
+        <li key={item.id}>
+          <Link as={`/i/${item.id}`} href={`/item?id=${item.id}`}>
+            <a>{item.name}</a>
+          </Link>
+        </li>
       ))}
     </ul>
   </div>
