@@ -18,6 +18,7 @@
     "@babel/preset-env": "^7.2.3",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
+    "babel-plugin-transform-define": "^1.3.1",
     "eslint": "^5.11.1",
     "eslint-config-jsdoc-strict": "^1.0.0",
     "eslint-config-prettier": "^3.3.0",
@@ -69,17 +70,5 @@
       "jsdoc/no-undefined-types": "off",
       "jsdoc/require-example": "off"
     }
-  },
-  "babel": {
-    "presets": [
-      [
-        "next/babel",
-        {
-          "preset-env": {
-            "modules": "commonjs"
-          }
-        }
-      ]
-    ]
   }
 }
