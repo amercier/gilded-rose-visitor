@@ -3,16 +3,16 @@ import { createLogger } from 'redux-logger';
 import createCliLogger from 'redux-cli-logger';
 import createSagaMiddleware from 'redux-saga';
 import itemReducer from '../reducers/item';
-import { doStartPollingItems, doFetchItems } from '../actions/item';
 import rootSaga from '../sagas';
 
 /**
  * Create the store.
  *
+ * @param {Object} initialState - Initial state.
  * @returns {Redux.Store} A new store.
  */
-export default function makeStore() {
-  const saga = createSagaMiddleware();
+function makeStore(initialState) {
+  const sagaMiddleware = createSagaMiddleware();
 
   const middlewares = [];
   if (process.env.NODE_ENV === 'development') {
@@ -22,19 +22,24 @@ export default function makeStore() {
       middlewares.push(createCliLogger({}));
     }
   }
-  middlewares.push(saga);
+  middlewares.push(sagaMiddleware);
 
   const store = createStore(
     itemReducer,
-    undefined, // preloadedState - we don't need an initial state as we will run the root saga immediately
+    initialState,
     applyMiddleware(...middlewares),
   );
 
-  // Run the root saga (ie: start listening for actions)
-  saga.run(rootSaga);
+  // Expose runSagaTask, a function that runs the rootSaga
+  // @see next-redux-saga documentation: https://github.com/bmealhouse/next-redux-saga
+  store.runSagaTask = () => {
+    store.sagaTask = sagaMiddleware.run(rootSaga);
+  };
 
-  // Start items polling on the browser, or 1 fetch if server-side
-  store.dispatch(process.browser ? doStartPollingItems() : doFetchItems());
+  // Run the root saga initially (ie: start listening for actions)
+  store.runSagaTask();
 
   return store;
 }
+
+export default makeStore;

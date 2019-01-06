@@ -1,6 +1,7 @@
 import React from 'react';
 import { string, number, arrayOf, shape } from 'prop-types';
 import { connect } from 'react-redux';
+import { doStartPollingItems, doFetchItems } from '../actions/item';
 
 /**
  * Home page.
@@ -30,6 +31,15 @@ Index.propTypes = {
       type: string.isRequired,
     }).isRequired,
   ).isRequired,
+};
+
+Index.getInitialProps = async ({ ctx }) => {
+  const { store, isServer } = ctx;
+
+  // Start items polling on the browser, or 1 fetch if server-side
+  store.dispatch(isServer ? doFetchItems() : doStartPollingItems());
+
+  return {};
 };
 
 /**

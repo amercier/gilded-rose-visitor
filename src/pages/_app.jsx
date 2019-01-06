@@ -1,13 +1,14 @@
-import NextApp, { Container } from 'next/app';
 import React from 'react';
-import withRedux from 'next-redux-wrapper';
+import App, { Container } from 'next/app';
 import { Provider } from 'react-redux';
+import withRedux from 'next-redux-wrapper';
+import withReduxSaga from 'next-redux-saga';
 import makeStore from '../store';
 
 /**
  * Redux-connected app, using next-redux-wrapper.
  */
-class App extends NextApp {
+class ReduxApp extends App {
   /**
    * Get initial props.
    *
@@ -16,10 +17,13 @@ class App extends NextApp {
    * @param {Object} input.context - Context.
    * @returns {Promise<Object>} An object containing page props.
    */
-  static async getInitialProps({ Component, context = {} }) {
-    const pageProps = Component.getInitialProps
-      ? await Component.getInitialProps(context)
-      : {};
+  static async getInitialProps({ Component, ctx }) {
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps({ ctx });
+    }
+
     return { pageProps };
   }
 
@@ -40,4 +44,4 @@ class App extends NextApp {
   }
 }
 
-export default withRedux(makeStore)(App);
+export default withRedux(makeStore)(withReduxSaga({ async: true })(ReduxApp));
