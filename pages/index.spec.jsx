@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { mount, shallow } from 'enzyme';
-import { doStartPollingItems, doFetchItems } from '../actions/item';
+import { doStartPollingItems, doFetchItems } from '../lib/actions/item';
 import ConnectedIndex, { Index } from '.';
 
 const itemsStub = {

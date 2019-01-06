@@ -1,7 +1,7 @@
 import React from 'react';
 import { string, number, arrayOf, shape } from 'prop-types';
 import { connect } from 'react-redux';
-import { doStartPollingItems, doFetchItems } from '../actions/item';
+import { doStartPollingItems, doFetchItems } from '../lib/actions/item';
 
 /**
  * Home page.

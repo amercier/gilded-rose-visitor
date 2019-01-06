@@ -9,7 +9,7 @@ after_success:
   - yarn build # Prevent before_deploy not being tested in PRs
 before_deploy:
   - yarn remove eslint-config-react-redux # Incompatible with Node 8
-  - yarn add now-cli --dev
+  - yarn global add now-cli
   - |
     echo '{
       "version": 2,
@@ -18,8 +18,8 @@ before_deploy:
 deploy:
   provider: script
   script: >
-    npx now -t $NOW_TOKEN && npx now alias $CNAME -t $NOW_TOKEN;
-    npx now rm gilded-rose-visitor --safe --yes -t $NOW_TOKEN || echo "Failed to clean aliases, aborting." >& 2
+    npx now -t $NOW_TOKEN | xargs -I % npx now -t $NOW_TOKEN alias % $CNAME || exit 1;
+    npx now -t $NOW_TOKEN rm gilded-rose-visitor --safe --yes || echo "Failed to clean aliases, aborting." >& 2
   skip_cleanup: true
   on:
     branch: master
