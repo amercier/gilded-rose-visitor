@@ -1,6 +1,7 @@
 import React from 'react';
 import { string, number, shape, object } from 'prop-types';
 import { connect } from 'react-redux';
+import Link from 'next/link';
 import { doFetchItem } from '../lib/actions/item';
 
 /**
@@ -24,6 +25,11 @@ const Item = ({ item, error }) => (
           <dt>Price</dt>
           <dd>{item.sellIn}</dd>
         </dl>
+        <p>
+          <Link href="/">
+            <a>Back to items list</a>
+          </Link>
+        </p>
       </>
     )}
     {error && (

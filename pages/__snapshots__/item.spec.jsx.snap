@@ -17,5 +17,14 @@ exports[`Item renders an item 1`] = `
     </dt>
     <dd />
   </dl>
+  <p>
+    <Link
+      href="/"
+    >
+      <a>
+        Back to items list
+      </a>
+    </Link>
+  </p>
 </main>
 `;
