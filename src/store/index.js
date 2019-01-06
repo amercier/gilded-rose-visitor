@@ -2,6 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import createCliLogger from 'redux-cli-logger';
 import createSagaMiddleware from 'redux-saga';
+import itemReducer from '../reducers/item';
 import rootSaga from '../sagas';
 
 /**
@@ -13,7 +14,7 @@ export default function makeStore() {
   const saga = createSagaMiddleware();
 
   const store = createStore(
-    state => state,
+    itemReducer,
     undefined, // preloadedState - we don't need an initial state as we will run the root saga immediately
     applyMiddleware(
       ...(process.env.NODE_ENV === 'development'

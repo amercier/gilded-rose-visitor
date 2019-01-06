@@ -58,6 +58,7 @@
         }
       ],
       "fp/no-class": "off",
+      "fp/no-let": "off",
       "fp/no-loops": "off",
       "fp/no-this": "off",
       "fp/no-mutation": "off",

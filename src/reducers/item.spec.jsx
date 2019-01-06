@@ -1,0 +1,126 @@
+import itemReducer from './item';
+import {
+  doStartPollingItems,
+  doStopPollingItems,
+  doFetchItems,
+  doSetItems,
+  doFetchItemError,
+} from '../actions/item';
+
+describe('itemReducer', () => {
+  let prevState;
+
+  beforeEach(() => {
+    prevState = itemReducer();
+  });
+
+  describe('initial state', () => {
+    it('sets items to an empty object', () => {
+      expect(prevState.items).toEqual({});
+    });
+
+    it('sets fetchingItems to false', () => {
+      expect(prevState.fetchingItems).toBe(false);
+    });
+
+    it('sets fetchedItemsOnce to false', () => {
+      expect(prevState.fetchedItemsOnce).toBe(false);
+    });
+
+    it("doesn't set fetchItemsError", () => {
+      expect(prevState.fetchItemsError).toBeUndefined();
+    });
+  });
+
+  describe('ITEMS_POLL_START', () => {
+    it('preserves the state', () => {
+      const nextState = itemReducer(prevState, doStartPollingItems());
+      expect(nextState).toEqual(prevState);
+    });
+  });
+
+  describe('ITEMS_POLL_STOP', () => {
+    it('preserves the state', () => {
+      const nextState = itemReducer(prevState, doStopPollingItems());
+      expect(nextState).toEqual(prevState);
+    });
+  });
+
+  describe('ITEMS_FETCH', () => {
+    it('sets fetchingItems to true', () => {
+      const { fetchingItems } = itemReducer(prevState, doFetchItems());
+      expect(fetchingItems).toBe(true);
+    });
+
+    it('preserves the rest of state', () => {
+      const { fetchingItems, ...rest } = itemReducer(prevState, doFetchItems());
+      expect(prevState).toMatchObject(rest);
+    });
+  });
+
+  describe('ITEMS_FETCH_ERROR', () => {
+    it('sets fetchItemsError to the given error', () => {
+      const ERROR = new Error();
+      const { fetchItemsError } = itemReducer(
+        prevState,
+        doFetchItemError(ERROR),
+      );
+      expect(fetchItemsError).toBe(ERROR);
+    });
+
+    it('sets fetchingItems to false', () => {
+      const { fetchingItems } = itemReducer(prevState, doFetchItemError({}));
+      expect(fetchingItems).toBe(false);
+    });
+
+    it('sets fetchedItemsOnce to true', () => {
+      const { fetchedItemsOnce } = itemReducer(prevState, doFetchItemError({}));
+      expect(fetchedItemsOnce).toBe(true);
+    });
+
+    it('preserves the rest of state', () => {
+      const {
+        fetchItemsError,
+        fetchingItems,
+        fetchedItemsOnce,
+        ...rest
+      } = itemReducer(prevState, doFetchItemError());
+      expect(prevState).toMatchObject(rest);
+    });
+  });
+
+  describe('ITEMS_SET', () => {
+    it('sets items to the given items', () => {
+      const ITEMS = {};
+      const { items } = itemReducer(prevState, doSetItems(ITEMS));
+      expect(items).toBe(ITEMS);
+    });
+
+    it('sets fetchingItems to false', () => {
+      const { fetchingItems } = itemReducer(prevState, doSetItems({}));
+      expect(fetchingItems).toBe(false);
+    });
+
+    it('sets fetchedItemsOnce to true', () => {
+      const { fetchedItemsOnce } = itemReducer(prevState, doSetItems({}));
+      expect(fetchedItemsOnce).toBe(true);
+    });
+
+    it('unsets fetchItemsError', () => {
+      prevState.fetchItemsError = new Error();
+      const { fetchItemsError } = itemReducer(prevState, doSetItems({}));
+      expect(fetchItemsError).toBeUndefined();
+    });
+
+    it('preserves the rest of state', () => {
+      const {
+        items,
+        fetchItemsError,
+        fetchingItems,
+        fetchedItemsOnce,
+        ...rest
+      } = itemReducer(prevState, doSetItems({}));
+      expect(prevState).toMatchObject(rest);
+    });
+  });
+});
