@@ -52,4 +52,5 @@ const mapStateToProps = state => ({
   items: Object.values(state.items),
 });
 
+export { Index };
 export default connect(mapStateToProps)(Index);

@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index renders a list of items 1`] = `
+<div>
+  <p>
+    Hello Next.js
+  </p>
+  <ul>
+    <li
+      key="a"
+    >
+      ITEM A
+    </li>
+    <li
+      key="b"
+    >
+      ITEM B
+    </li>
+    <li
+      key="c"
+    >
+      ITEM C
+    </li>
+  </ul>
+</div>
+`;
