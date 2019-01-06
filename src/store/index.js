@@ -1,0 +1,29 @@
+import { createStore, applyMiddleware } from 'redux';
+import { createLogger } from 'redux-logger';
+import createCliLogger from 'redux-cli-logger';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from '../sagas';
+
+/**
+ * Create the store.
+ *
+ * @returns {Redux.Store} A new store.
+ */
+export default function makeStore() {
+  const saga = createSagaMiddleware();
+
+  const store = createStore(
+    state => state,
+    undefined, // preloadedState - we don't need an initial state as we will run the root saga immediately
+    applyMiddleware(
+      ...(process.env.NODE_ENV === 'development'
+        ? [process.browser ? createLogger() : createCliLogger({}), saga]
+        : [saga]),
+    ),
+  );
+
+  // Run the root saga (ie: start listening for actions)
+  saga.run(rootSaga);
+
+  return store;
+}
