@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mergeItems returns the new set and correct counts when items have been added 1`] = `
+Object {
+  "a": Object {
+    "id": "a",
+    "quality": 10,
+    "qualityTrend": 0,
+    "sellIn": 10,
+    "sellInTrend": 0,
+  },
+  "b": Object {
+    "id": "b",
+    "quality": 20,
+    "qualityTrend": 0,
+    "sellIn": 20,
+    "sellInTrend": 0,
+  },
+  "c": Object {
+    "id": "c",
+    "quality": 30,
+    "qualityTrend": 0,
+    "sellIn": 30,
+    "sellInTrend": 0,
+  },
+  "d": Object {
+    "id": "d",
+    "quality": 40,
+    "qualityTrend": 0,
+    "sellIn": 40,
+    "sellInTrend": 0,
+  },
+  "e": Object {
+    "id": "e",
+    "quality": 50,
+    "qualityTrend": 0,
+    "sellIn": 50,
+    "sellInTrend": 0,
+  },
+}
+`;
+
+exports[`mergeItems returns the new set and correct counts when items have been added and removed 1`] = `
+Object {
+  "a": Object {
+    "id": "a",
+    "quality": 10,
+    "qualityTrend": 0,
+    "sellIn": 10,
+    "sellInTrend": 0,
+  },
+  "d": Object {
+    "id": "d",
+    "quality": 40,
+    "qualityTrend": 0,
+    "sellIn": 40,
+    "sellInTrend": 0,
+  },
+}
+`;
+
+exports[`mergeItems returns the new set and correct counts when items have been removed 1`] = `
+Object {
+  "a": Object {
+    "id": "a",
+    "quality": 10,
+    "qualityTrend": 0,
+    "sellIn": 10,
+    "sellInTrend": 0,
+  },
+}
+`;
+
+exports[`mergeItems returns the new set and correct counts when items have changed 1`] = `
+Object {
+  "a": Object {
+    "id": "a",
+    "quality": 99,
+    "qualityTrend": -89,
+    "sellIn": 10,
+    "sellInTrend": 0,
+  },
+  "b": Object {
+    "id": "b",
+    "quality": 20,
+    "qualityTrend": 0,
+    "sellIn": 99,
+    "sellInTrend": -79,
+  },
+  "c": Object {
+    "id": "c",
+    "quality": 30,
+    "qualityTrend": 0,
+    "sellIn": 30,
+    "sellInTrend": 0,
+  },
+}
+`;
