@@ -17,9 +17,9 @@
     "prettier": "^1.15.3"
   },
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
+    "dev": "next src",
+    "build": "next build src",
+    "start": "next start src",
     "lint": "run-p lint:*",
     "lint:prettier": "prettier --list-different '**/*'",
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern src/serviceWorker.js --ext .js,.jsx ."
@@ -48,6 +48,12 @@
       ],
       "fp/no-class": "off",
       "fp/no-this": "off",
+      "fp/no-mutation": [
+        "error",
+        {
+          "commonjs": true
+        }
+      ],
       "fp/no-rest-parameters": "off",
       "jsdoc/require-example": "off"
     }
