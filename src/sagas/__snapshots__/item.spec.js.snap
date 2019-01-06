@@ -1,5 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`fetchItems returns a json object containing all items returned by the API 1`] = `
+Array [
+  Object {
+    "id": "a",
+    "quality": 10,
+    "sellIn": 10,
+    "type": "STANDARD",
+  },
+  Object {
+    "id": "b",
+    "quality": 20,
+    "sellIn": 20,
+    "type": "CONJURED",
+  },
+  Object {
+    "id": "c",
+    "quality": 30,
+    "sellIn": 30,
+    "type": "LEGENDARY",
+  },
+]
+`;
+
+exports[`fetchItemsForSale returns a json object containing only the sellable returned by the API 1`] = `
+Array [
+  Object {
+    "id": "a",
+    "quality": 10,
+    "sellIn": 10,
+    "type": "STANDARD",
+  },
+  Object {
+    "id": "b",
+    "quality": 20,
+    "sellIn": 20,
+    "type": "CONJURED",
+  },
+]
+`;
+
 exports[`mergeItems returns the new set and correct counts when items have been added 1`] = `
 Object {
   "a": Object {

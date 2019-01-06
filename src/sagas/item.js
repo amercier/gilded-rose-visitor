@@ -17,6 +17,13 @@ import {
   ITEMS_FETCH,
 } from '../constants/actionTypes';
 
+const ITEM_TYPES = {
+  LEGENDARY: 'LEGENDARY',
+  STANDARD: 'STANDARD',
+  BACKSTAGE_PASS: 'BACKSTAGE_PASS',
+  CONJURED: 'CONJURED',
+};
+
 /**
  * @typedef Item
  *
@@ -96,15 +103,26 @@ export async function fetchItems() {
 }
 
 /**
- * Generate two effects:
- * 1. A call to fetchItems
- * 2. A new ITEMS_SET actions with the items returned by fetchItems.
+ * Fetch items from the API and returns the sellable ones only.
  *
- * @returns {Generator} A generator that yields a call to fetchItems and a ITEMS_SET action.
+ * @returns {Promise<Item[]>} Sellable items.
+ */
+export async function fetchItemsForSale() {
+  return (await fetchItems()).filter(
+    item => item.type !== ITEM_TYPES.LEGENDARY,
+  );
+}
+
+/**
+ * Generate two effects:
+ * 1. A call to fetchItemsForSale
+ * 2. A new ITEMS_SET actions with the items returned by fetchItemsForSale.
+ *
+ * @returns {Generator} A generator that yields a call to fetchItemsForSale and a ITEMS_SET action.
  */
 export function* handleFetchItems() {
   try {
-    const items = yield call(fetchItems);
+    const items = yield call(fetchItemsForSale);
     const prevItems = yield select(state => state.items);
     const [nextItems] = mergeItems(prevItems, items);
     yield put(doSetItems(nextItems));

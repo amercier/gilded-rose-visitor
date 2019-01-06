@@ -1,4 +1,4 @@
-import { mergeItems, fetchItems } from './item';
+import { mergeItems, fetchItems, fetchItemsForSale } from './item';
 
 describe('mergeItems', () => {
   const prevItems = {
@@ -65,10 +65,13 @@ describe('mergeItems', () => {
 
 describe('fetchItems', () => {
   it('returns a json object containing all items returned by the API', async () => {
-    // eslint-disable-next-line global-require
-    const { ITEMS } = require('./__mocks__/isomorphic-unfetch'); // TODO Find a better way
-    const response = await fetchItems();
-    expect(response).toEqual(ITEMS);
+    expect(await fetchItems()).toMatchSnapshot();
+  });
+});
+
+describe('fetchItemsForSale', () => {
+  it('returns a json object containing only the sellable returned by the API', async () => {
+    expect(await fetchItemsForSale()).toMatchSnapshot();
   });
 });
 

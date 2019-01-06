@@ -2,9 +2,9 @@ import { API_URL_ITEMS } from '../../constants/api';
 
 // TODO: find a better place for this.
 export const ITEMS = [
-  { id: 'a', quality: 10, sellIn: 10 },
-  { id: 'b', quality: 20, sellIn: 20 },
-  { id: 'c', quality: 30, sellIn: 30 },
+  { id: 'a', quality: 10, sellIn: 10, type: 'STANDARD' },
+  { id: 'b', quality: 20, sellIn: 20, type: 'CONJURED' },
+  { id: 'c', quality: 30, sellIn: 30, type: 'LEGENDARY' },
 ];
 
 /**
