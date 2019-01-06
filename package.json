@@ -1,9 +1,12 @@
 {
   "private": true,
   "dependencies": {
+    "cross-env": "^5.2.0",
     "enzyme": "^3.8.0",
     "enzyme-to-json": "^3.3.5",
     "isomorphic-unfetch": "^3.0.0",
+    "koa": "^2.6.2",
+    "koa-router": "^7.4.0",
     "next": "^7.0.2",
     "next-redux-saga": "^3.0.0",
     "next-redux-wrapper": "^2.1.0",
@@ -35,9 +38,9 @@
     "redux-mock-store": "^1.5.3"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "cross-env NODE_ENV=development node server",
     "build": "next build",
-    "start": "next start",
+    "start": "cross-env NODE_ENV=production node server",
     "lint": "run-p lint:*",
     "lint:prettier": "prettier --list-different '**/*'",
     "lint:eslint": "eslint --ignore-path .gitignore --ext .js,.jsx .",
