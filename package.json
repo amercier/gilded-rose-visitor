@@ -12,12 +12,17 @@
     "redux-saga": "^0.16.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "eslint": "^5.11.1",
     "eslint-config-jsdoc-strict": "^1.0.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-config-react-redux": "^1.0.6",
     "eslint-plugin-jsdoc": "^3.14.1",
     "eslint-plugin-prettier": "^3.0.1",
+    "jest": "^23.6.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.15.3"
   },
@@ -27,7 +32,8 @@
     "start": "next start src",
     "lint": "run-p lint:*",
     "lint:prettier": "prettier --list-different '**/*'",
-    "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern src/serviceWorker.js --ext .js,.jsx ."
+    "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern src/serviceWorker.js --ext .js,.jsx .",
+    "test": "jest"
   },
   "prettier": {
     "singleQuote": true,
@@ -52,16 +58,24 @@
         }
       ],
       "fp/no-class": "off",
+      "fp/no-loops": "off",
       "fp/no-this": "off",
-      "fp/no-mutation": [
-        "error",
-        {
-          "commonjs": true
-        }
-      ],
+      "fp/no-mutation": "off",
       "fp/no-rest-parameters": "off",
       "jsdoc/no-undefined-types": "off",
       "jsdoc/require-example": "off"
     }
+  },
+  "babel": {
+    "presets": [
+      [
+        "next/babel",
+        {
+          "preset-env": {
+            "modules": "commonjs"
+          }
+        }
+      ]
+    ]
   }
 }
