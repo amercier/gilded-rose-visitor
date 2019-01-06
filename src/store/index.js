@@ -14,14 +14,20 @@ import rootSaga from '../sagas';
 export default function makeStore() {
   const saga = createSagaMiddleware();
 
+  const middlewares = [];
+  if (process.env.NODE_ENV === 'development') {
+    if (process.browser) {
+      middlewares.push(createLogger());
+    } else if (process.env.DEBUG) {
+      middlewares.push(createCliLogger({}));
+    }
+  }
+  middlewares.push(saga);
+
   const store = createStore(
     itemReducer,
     undefined, // preloadedState - we don't need an initial state as we will run the root saga immediately
-    applyMiddleware(
-      ...(process.env.NODE_ENV === 'development'
-        ? [process.browser ? createLogger() : createCliLogger({}), saga]
-        : [saga]),
-    ),
+    applyMiddleware(...middlewares),
   );
 
   // Run the root saga (ie: start listening for actions)
