@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item renders an item 1`] = `
+<main>
+  <h1 />
+  <dl>
+    <dt>
+      Type
+    </dt>
+    <dd />
+    <dt>
+      Quality
+    </dt>
+    <dd />
+    <dt>
+      Price
+    </dt>
+    <dd />
+  </dl>
+</main>
+`;
