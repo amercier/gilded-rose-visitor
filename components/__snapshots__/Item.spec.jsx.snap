@@ -1,0 +1,139 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item renders a item that is in the cart 1`] = `
+<WithStyles(Card)>
+  <CardLink
+    as="/i/a"
+    disabled={false}
+    href="/item?id=a"
+  >
+    <WithStyles(CardActionArea)
+      style={
+        Object {
+          "height": "100%",
+        }
+      }
+    >
+      <WithStyles(CardContent)
+        style={
+          Object {
+            "height": "100%",
+          }
+        }
+      >
+        <WithStyles(Typography)
+          component="h2"
+          gutterBottom={true}
+          variant="h5"
+        >
+          <Item__NameContainer>
+            ITEM A
+          </Item__NameContainer>
+        </WithStyles(Typography)>
+        <Item__TypeContainer>
+          <Type
+            type="STANDARD"
+          />
+        </Item__TypeContainer>
+        <Item__InfoContainer>
+          <WithStyles(Typography)
+            variant="subtitle1"
+          >
+            Quality: 
+            10
+          </WithStyles(Typography)>
+          <WithStyles(Typography)
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            variant="subtitle1"
+          >
+            $ 
+            10
+          </WithStyles(Typography)>
+        </Item__InfoContainer>
+      </WithStyles(CardContent)>
+    </WithStyles(CardActionArea)>
+  </CardLink>
+  <WithStyles(CardActions)>
+    <WithStyles(Button)
+      color="secondary"
+      onClick={[Function]}
+      size="small"
+    >
+      Remove from cart
+    </WithStyles(Button)>
+  </WithStyles(CardActions)>
+</WithStyles(Card)>
+`;
+
+exports[`Item renders a item that is not in the cart 1`] = `
+<WithStyles(Card)>
+  <CardLink
+    as="/i/a"
+    disabled={false}
+    href="/item?id=a"
+  >
+    <WithStyles(CardActionArea)
+      style={
+        Object {
+          "height": "100%",
+        }
+      }
+    >
+      <WithStyles(CardContent)
+        style={
+          Object {
+            "height": "100%",
+          }
+        }
+      >
+        <WithStyles(Typography)
+          component="h2"
+          gutterBottom={true}
+          variant="h5"
+        >
+          <Item__NameContainer>
+            ITEM A
+          </Item__NameContainer>
+        </WithStyles(Typography)>
+        <Item__TypeContainer>
+          <Type
+            type="STANDARD"
+          />
+        </Item__TypeContainer>
+        <Item__InfoContainer>
+          <WithStyles(Typography)
+            variant="subtitle1"
+          >
+            Quality: 
+            10
+          </WithStyles(Typography)>
+          <WithStyles(Typography)
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+            variant="subtitle1"
+          >
+            $ 
+            10
+          </WithStyles(Typography)>
+        </Item__InfoContainer>
+      </WithStyles(CardContent)>
+    </WithStyles(CardActionArea)>
+  </CardLink>
+  <WithStyles(CardActions)>
+    <WithStyles(Button)
+      color="primary"
+      onClick={[Function]}
+      size="small"
+    >
+      Add to cart
+    </WithStyles(Button)>
+  </WithStyles(CardActions)>
+</WithStyles(Card)>
+`;

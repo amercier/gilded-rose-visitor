@@ -1,151 +1,234 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Cart renders a list of items 1`] = `
-<main>
-  <h1>
+<Layout>
+  <WithStyles(Typography)
+    component="h2"
+    gutterBottom={true}
+    variant="h2"
+  >
     Your cart
-  </h1>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          Item
-        </th>
-        <th>
-          Type
-        </th>
-        <th>
-          Quality
-        </th>
-        <th>
-          Price
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        key="a"
-      >
-        <td>
-          <Link
-            as="/i/a"
-            href="/item?id=a"
+  </WithStyles(Typography)>
+  <WithStyles(Paper)
+    style={
+      Object {
+        "padding": "2rem",
+      }
+    }
+  >
+    <WithStyles(Table)>
+      <WithStyles(TableHead)>
+        <WithStyles(TableRow)>
+          <WithStyles(TableCell)>
+            Item
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="center"
           >
-            <a>
+            Type
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="right"
+          >
+            Quality
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="right"
+          >
+            Price
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell) />
+        </WithStyles(TableRow)>
+      </WithStyles(TableHead)>
+      <WithStyles(TableBody)>
+        <WithStyles(TableRow)
+          key="a"
+        >
+          <WithStyles(TableCell)>
+            <WithStyles(Typography)
+              variant="body2"
+            >
               ITEM A
-            </a>
-          </Link>
-        </td>
-        <td>
-          STANDARD
-        </td>
-        <td>
-          10
-        </td>
-        <td>
-          10
-        </td>
-        <td>
-          <button
-            onClick={[Function]}
-            type="button"
+            </WithStyles(Typography)>
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="center"
           >
-            Remove from cart
-          </button>
-        </td>
-      </tr>
-      <tr
-        key="b"
-      >
-        <td>
-          <Link
-            as="/i/b"
-            href="/item?id=b"
+            <Type
+              type="STANDARD"
+            />
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="right"
           >
-            <a>
+            10
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="right"
+          >
+            $ 
+            10
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)>
+            <Link
+              as="/i/a"
+              href="/item?id=a"
+            >
+              <WithStyles(Button)
+                color="primary"
+              >
+                View
+              </WithStyles(Button)>
+            </Link>
+            <WithStyles(Button)
+              color="secondary"
+              onClick={[Function]}
+            >
+              Remove
+            </WithStyles(Button)>
+          </WithStyles(TableCell)>
+        </WithStyles(TableRow)>
+        <WithStyles(TableRow)
+          key="b"
+        >
+          <WithStyles(TableCell)>
+            <WithStyles(Typography)
+              variant="body2"
+            >
               ITEM B
-            </a>
-          </Link>
-        </td>
-        <td>
-          STANDARD
-        </td>
-        <td>
-          20
-        </td>
-        <td>
-          20
-        </td>
-        <td>
-          <button
-            onClick={[Function]}
-            type="button"
+            </WithStyles(Typography)>
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="center"
           >
-            Remove from cart
-          </button>
-        </td>
-      </tr>
-      <tr
-        key="c"
-      >
-        <td>
-          <Link
-            as="/i/c"
-            href="/item?id=c"
+            <Type
+              type="STANDARD"
+            />
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="right"
           >
-            <a>
+            20
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="right"
+          >
+            $ 
+            20
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)>
+            <Link
+              as="/i/b"
+              href="/item?id=b"
+            >
+              <WithStyles(Button)
+                color="primary"
+              >
+                View
+              </WithStyles(Button)>
+            </Link>
+            <WithStyles(Button)
+              color="secondary"
+              onClick={[Function]}
+            >
+              Remove
+            </WithStyles(Button)>
+          </WithStyles(TableCell)>
+        </WithStyles(TableRow)>
+        <WithStyles(TableRow)
+          key="c"
+        >
+          <WithStyles(TableCell)>
+            <WithStyles(Typography)
+              variant="body2"
+            >
               ITEM C
-            </a>
-          </Link>
-        </td>
-        <td>
-          LEGENDARY
-        </td>
-        <td>
-          30
-        </td>
-        <td>
-          30
-        </td>
-        <td>
-          <button
-            onClick={[Function]}
-            type="button"
+            </WithStyles(Typography)>
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="center"
           >
-            Remove from cart
-          </button>
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th>
-          TOTAL
-        </th>
-        <th />
-        <th />
-        <th>
-          60
-        </th>
-        <th />
-      </tr>
-    </tfoot>
-  </table>
-  <p>
-    <button
-      type="button"
-    >
-      Proceed to checkout
-    </button>
-  </p>
-  <p>
-    <Link
-      href="/"
-    >
-      <a>
-        Go back to shopping.
-      </a>
-    </Link>
-  </p>
-</main>
+            <Type
+              type="LEGENDARY"
+            />
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="right"
+          >
+            30
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)
+            align="right"
+          >
+            $ 
+            30
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell)>
+            <Link
+              as="/i/c"
+              href="/item?id=c"
+            >
+              <WithStyles(Button)
+                color="primary"
+              >
+                View
+              </WithStyles(Button)>
+            </Link>
+            <WithStyles(Button)
+              color="secondary"
+              onClick={[Function]}
+            >
+              Remove
+            </WithStyles(Button)>
+          </WithStyles(TableCell)>
+        </WithStyles(TableRow)>
+        <WithStyles(TableRow)>
+          <WithStyles(TableCell)
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            TOTAL
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell) />
+          <WithStyles(TableCell) />
+          <WithStyles(TableCell)
+            align="right"
+            style={
+              Object {
+                "fontWeight": "bold",
+              }
+            }
+          >
+            $ 
+            60
+          </WithStyles(TableCell)>
+          <WithStyles(TableCell) />
+        </WithStyles(TableRow)>
+      </WithStyles(TableBody)>
+    </WithStyles(Table)>
+    <cart__ActionsContainer>
+      <WithStyles(Button)
+        color="primary"
+        style={
+          Object {
+            "marginRight": "2rem",
+          }
+        }
+        variant="contained"
+      >
+        Proceed to checkout
+      </WithStyles(Button)>
+      <Link
+        href="/"
+      >
+        <WithStyles(Button)>
+          Back to shopping
+        </WithStyles(Button)>
+      </Link>
+    </cart__ActionsContainer>
+  </WithStyles(Paper)>
+</Layout>
 `;

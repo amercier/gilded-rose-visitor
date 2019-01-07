@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout renders a BACKSTAGE_PASS type 1`] = `
+<WithStyles(Chip)
+  color="primary"
+  label="Backstage pass"
+/>
+`;
+
+exports[`Layout renders a CONJURED type 1`] = `
+<WithStyles(Chip)
+  color="secondary"
+  label="Conjured"
+/>
+`;
+
+exports[`Layout renders a STANDARD type 1`] = `
+<WithStyles(Chip)
+  color="default"
+  label="Standard"
+/>
+`;
