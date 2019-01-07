@@ -3,6 +3,7 @@
 const Koa = require('koa');
 const next = require('next');
 const Router = require('koa-router');
+const koaStatic = require('koa-static');
 
 /**
  * Serve Next application with custom routes.
@@ -11,9 +12,10 @@ const Router = require('koa-router');
  * @param {boolean} config.dev - Next serve development mode enabled or not.
  * @param {number} config.port - Server port.
  * @param {Object} config.routes - Paths to pages indexed by routes. Ex: `{ '/p/:id': /post }`.
+ * @param {string} config.staticPath - Path to static files.
  * @returns {number} The port the server is listening on.
  */
-async function serve({ dev, port, routes }) {
+async function serve({ dev, port, routes, staticPath }) {
   const app = next({ dev });
   const handle = app.getRequestHandler();
 
@@ -21,6 +23,8 @@ async function serve({ dev, port, routes }) {
 
   const server = new Koa();
   const router = new Router();
+
+  server.use(koaStatic(staticPath));
 
   Object.entries(routes).forEach(([route, path]) => {
     router.get(route, async ctx => {
@@ -54,6 +58,7 @@ serve({
   routes: {
     '/i/:id': '/item',
   },
+  staticPath: `${__dirname}/public`,
 }).then(
   actualPort => {
     console.log(`> Ready on http://localhost:${actualPort}`);
