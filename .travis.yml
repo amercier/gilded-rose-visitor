@@ -4,9 +4,10 @@ cache: yarn
 before_script:
   - yarn lint
 script:
-  - yarn test
+  - yarn test --coverage --colors
 after_success:
   - yarn build # Prevent before_deploy not being tested in PRs
+  - codecov
 before_deploy:
   - yarn remove eslint-config-react-redux # Incompatible with Node 8
   - yarn global add now-cli
