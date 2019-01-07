@@ -2,8 +2,25 @@ import React from 'react';
 import { string, number, func, arrayOf, shape } from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Typography from '@material-ui/core/Typography';
+import styled from 'styled-components';
 import { doStartPollingItems, doFetchItems } from '../lib/actions/item';
 import { doRemoveItemFromCart } from '../lib/actions/cart';
+import Layout from '../components/Layout';
+import Type from '../components/Type';
+
+const ActionsContainer = styled.div`
+  margin-top: 4rem;
+  display: flex;
+  justify-content: flex-end;
+`;
 
 /**
  * Home page.
@@ -14,63 +31,86 @@ import { doRemoveItemFromCart } from '../lib/actions/cart';
  * @returns {React.Element} The rendered element.
  */
 const Cart = ({ items, onRemoveItem }) => (
-  <main>
-    <h1>Your cart</h1>
+  <Layout>
+    <Typography gutterBottom variant="h2" component="h2">
+      Your cart
+    </Typography>
+    <Paper style={{ padding: '2rem' }}>
+      {items.length === 0 ? (
+        <>
+          <Typography variant="subheading" component="p">
+            Your cart is empty.
+          </Typography>
+          <ActionsContainer>
+            <Link href="/">
+              <Button>Back to shopping</Button>
+            </Link>
+          </ActionsContainer>
+        </>
+      ) : (
+        <>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Item</TableCell>
+                <TableCell align="center">Type</TableCell>
+                <TableCell align="right">Quality</TableCell>
+                <TableCell align="right">Price</TableCell>
+                <TableCell />
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {items.map(item => (
+                <TableRow key={item.id}>
+                  <TableCell>
+                    <Typography variant="body2">{item.name}</Typography>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Type type={item.type} />
+                  </TableCell>
+                  <TableCell align="right">{item.quality}</TableCell>
+                  <TableCell align="right">$ {item.sellIn}</TableCell>
+                  <TableCell>
+                    <Link as={`/i/${item.id}`} href={`/item?id=${item.id}`}>
+                      <Button color="primary">View</Button>
+                    </Link>
+                    <Button
+                      color="secondary"
+                      onClick={() => onRemoveItem(item.id)}
+                    >
+                      Remove
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+              <TableRow>
+                <TableCell style={{ fontWeight: 'bold' }}>TOTAL</TableCell>
+                <TableCell />
+                <TableCell />
+                <TableCell align="right" style={{ fontWeight: 'bold' }}>
+                  $ {items.reduce((total, { sellIn }) => total + sellIn, 0)}
+                </TableCell>
+                <TableCell />
+              </TableRow>
+            </TableBody>
+          </Table>
 
-    {items.length === 0 ? (
-      <p>Your cart is empty.</p>
-    ) : (
-      <>
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Type</th>
-              <th>Quality</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items.map(item => (
-              <tr key={item.id}>
-                <td>
-                  <Link as={`/i/${item.id}`} href={`/item?id=${item.id}`}>
-                    <a>{item.name}</a>
-                  </Link>
-                </td>
-                <td>{item.type}</td>
-                <td>{item.quality}</td>
-                <td>{item.sellIn}</td>
-                <td>
-                  <button type="button" onClick={() => onRemoveItem(item.id)}>
-                    Remove from cart
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr>
-              <th>TOTAL</th>
-              <th />
-              <th />
-              <th>{items.reduce((total, { sellIn }) => total + sellIn, 0)}</th>
-              <th />
-            </tr>
-          </tfoot>
-        </table>
-
-        <p>
-          <button type="button">Proceed to checkout</button>
-        </p>
-      </>
-    )}
-    <p>
-      <Link href="/">
-        <a>Go back to shopping.</a>
-      </Link>
-    </p>
-  </main>
+          <ActionsContainer>
+            <Button
+              variant="contained"
+              color="primary"
+              style={{ marginRight: '2rem' }}
+            >
+              Proceed to checkout
+            </Button>
+            <Link href="/">
+              <Button>Back to shopping</Button>
+            </Link>
+          </ActionsContainer>
+        </>
+      )}
+    </Paper>
+  </Layout>
 );
 
 Cart.propTypes = {
