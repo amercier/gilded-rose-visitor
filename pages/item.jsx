@@ -1,9 +1,18 @@
 import React from 'react';
-import { string, number, shape, func, object, arrayOf } from 'prop-types';
+import { string, number, shape, object } from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
+import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
 import { doFetchItem } from '../lib/actions/item';
-import { doAddItemToCart, doRemoveItemFromCart } from '../lib/actions/cart';
+import Layout from '../components/Layout';
+import ConnectedItem from '../components/Item';
+
+const Container = styled.div`
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+`;
 
 /**
  * Item details page.
@@ -11,40 +20,18 @@ import { doAddItemToCart, doRemoveItemFromCart } from '../lib/actions/cart';
  * @param {Object} props - React component properties.
  * @param {Item} props.item - Item to display.
  * @param {Item} props.error - Item error, if any.
- * @param {Function} props.onAddItem - Function to call when the item is added to the cart.
- * @param {Function} props.onRemoveItem - Function to call when the item is removed from the cart.
  * @returns {React.Element} The rendered element.
  */
-const Item = ({ item, error, cart, onAddItem, onRemoveItem }) => (
-  <main>
+const Item = ({ item, error }) => (
+  <Layout>
     {item && (
-      <>
-        <h1>{item.name}</h1>
-        <dl>
-          <dt>Type</dt>
-          <dd>{item.type}</dd>
-          <dt>Quality</dt>
-          <dd>{item.quality}</dd>
-          <dt>Price</dt>
-          <dd>{item.sellIn}</dd>
-        </dl>
-        <p>
-          {cart.indexOf(item.id) === -1 ? (
-            <button type="button" onClick={() => onAddItem(item.id)}>
-              Add to cart
-            </button>
-          ) : (
-            <button type="button" onClick={() => onRemoveItem(item.id)}>
-              Remove from cart
-            </button>
-          )}
-        </p>
-        <p>
+      <Container>
+        <ConnectedItem item={item} linkDisabled>
           <Link href="/">
-            <a>Back to items list</a>
+            <Button>Back</Button>
           </Link>
-        </p>
-      </>
+        </ConnectedItem>
+      </Container>
     )}
     {error && (
       <p>
@@ -52,7 +39,7 @@ const Item = ({ item, error, cart, onAddItem, onRemoveItem }) => (
         later.
       </p>
     )}
-  </main>
+  </Layout>
 );
 
 Item.propTypes = {
@@ -64,9 +51,6 @@ Item.propTypes = {
     type: string,
   }),
   error: object,
-  cart: arrayOf(string).isRequired,
-  onAddItem: func.isRequired,
-  onRemoveItem: func.isRequired,
 };
 
 Item.defaultProps = {
@@ -84,30 +68,16 @@ Item.getInitialProps = async ({ ctx }) => {
 };
 
 /**
- * Map Redux state to <QualityFilter> properties.
+ * Map Redux state to <Item> properties.
  *
  * @param {Object} state - Redux state.
- * @returns {Object} Properties for <QualityFilter> component.
+ * @returns {Object} Properties for <Item> component.
  */
 const mapStateToProps = ({ itemReducer, cartReducer }) => ({
   item: itemReducer.item,
   error: itemReducer.fetchItemError,
-  cart: Object.values(cartReducer.cart),
-});
-
-/**
- * Map Redux state to <Index> component properties.
- *
- * @param {Function} dispatch - Redux action dispatcher.
- * @returns {Object} Properties for <Index> component component.
- */
-const mapDispatchToProps = dispatch => ({
-  onAddItem: id => dispatch(doAddItemToCart(id)),
-  onRemoveItem: id => dispatch(doRemoveItemFromCart(id)),
+  cart: cartReducer.cart,
 });
 
 export { Item };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Item);
+export default connect(mapStateToProps)(Item);

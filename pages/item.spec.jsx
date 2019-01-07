@@ -6,7 +6,11 @@ import { doFetchItem } from '../lib/actions/item';
 import ConnectedItem, { Item } from './item';
 
 const itemStub = {
-  a: { id: 'a', name: 'ITEM A', quality: 10, sellIn: 10, type: 'STANDARD' },
+  id: 'a',
+  name: 'ITEM A',
+  quality: 10,
+  sellIn: 10,
+  type: 'STANDARD',
 };
 
 describe('Item', () => {

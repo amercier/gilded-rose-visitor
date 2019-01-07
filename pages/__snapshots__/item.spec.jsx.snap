@@ -1,38 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Item renders an item 1`] = `
-<main>
-  <h1 />
-  <dl>
-    <dt>
-      Type
-    </dt>
-    <dd />
-    <dt>
-      Quality
-    </dt>
-    <dd />
-    <dt>
-      Price
-    </dt>
-    <dd />
-  </dl>
-  <p>
-    <button
-      onClick={[Function]}
-      type="button"
+<Layout>
+  <item__Container>
+    <Connect(Item)
+      item={
+        Object {
+          "id": "a",
+          "name": "ITEM A",
+          "quality": 10,
+          "sellIn": 10,
+          "type": "STANDARD",
+        }
+      }
+      linkDisabled={true}
     >
-      Add to cart
-    </button>
-  </p>
-  <p>
-    <Link
-      href="/"
-    >
-      <a>
-        Back to items list
-      </a>
-    </Link>
-  </p>
-</main>
+      <Link
+        href="/"
+      >
+        <WithStyles(Button)>
+          Back
+        </WithStyles(Button)>
+      </Link>
+    </Connect(Item)>
+  </item__Container>
+</Layout>
 `;
