@@ -1,68 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Index renders a list of items 1`] = `
-<main>
-  <h1>
-    Gilded Rose Inn
-  </h1>
-  <p>
-    Your cart is empty
-  </p>
-  <ul>
-    <li
+<Layout>
+  <WithStyles(Grid)
+    container={true}
+    spacing={24}
+  >
+    <WithStyles(Grid)
+      item={true}
       key="a"
+      lg={4}
+      md={4}
+      sm={6}
+      xl={4}
+      xs={12}
     >
-      <Link
-        as="/i/a"
-        href="/item?id=a"
-      >
-        <a>
-          ITEM A
-        </a>
-      </Link>
-      <button
-        onClick={[Function]}
-        type="button"
-      >
-        Add to cart
-      </button>
-    </li>
-    <li
+      <Connect(Item)
+        isInCart={false}
+        item={
+          Object {
+            "id": "a",
+            "name": "ITEM A",
+            "quality": 10,
+            "sellIn": 10,
+            "type": "STANDARD",
+          }
+        }
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
       key="b"
+      lg={4}
+      md={4}
+      sm={6}
+      xl={4}
+      xs={12}
     >
-      <Link
-        as="/i/b"
-        href="/item?id=b"
-      >
-        <a>
-          ITEM B
-        </a>
-      </Link>
-      <button
-        onClick={[Function]}
-        type="button"
-      >
-        Add to cart
-      </button>
-    </li>
-    <li
+      <Connect(Item)
+        isInCart={false}
+        item={
+          Object {
+            "id": "b",
+            "name": "ITEM B",
+            "quality": 20,
+            "sellIn": 20,
+            "type": "STANDARD",
+          }
+        }
+      />
+    </WithStyles(Grid)>
+    <WithStyles(Grid)
+      item={true}
       key="c"
+      lg={4}
+      md={4}
+      sm={6}
+      xl={4}
+      xs={12}
     >
-      <Link
-        as="/i/c"
-        href="/item?id=c"
-      >
-        <a>
-          ITEM C
-        </a>
-      </Link>
-      <button
-        onClick={[Function]}
-        type="button"
-      >
-        Add to cart
-      </button>
-    </li>
-  </ul>
-</main>
+      <Connect(Item)
+        isInCart={false}
+        item={
+          Object {
+            "id": "c",
+            "name": "ITEM C",
+            "quality": 30,
+            "sellIn": 30,
+            "type": "LEGENDARY",
+          }
+        }
+      />
+    </WithStyles(Grid)>
+  </WithStyles(Grid)>
+</Layout>
 `;

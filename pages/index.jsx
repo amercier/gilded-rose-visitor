@@ -1,9 +1,16 @@
 import React from 'react';
-import { string, number, func, arrayOf, shape } from 'prop-types';
+import { string, number, arrayOf, shape } from 'prop-types';
 import { connect } from 'react-redux';
-import Link from 'next/link';
+import Grid from '@material-ui/core/Grid';
 import { doStartPollingItems, doFetchItems } from '../lib/actions/item';
-import { doAddItemToCart, doRemoveItemFromCart } from '../lib/actions/cart';
+import Layout from '../components/Layout';
+import ConnectedItem from '../components/Item';
+
+export const xs = 12;
+export const sm = 6;
+export const md = 4;
+export const lg = 4;
+export const xl = 4;
 
 /**
  * Home page.
@@ -15,37 +22,16 @@ import { doAddItemToCart, doRemoveItemFromCart } from '../lib/actions/cart';
  * @param {Function} props.onRemoveItem - Function to call when an item is removed from the cart.
  * @returns {React.Element} The rendered element.
  */
-const Index = ({ items, cart, onAddItem, onRemoveItem }) => (
-  <main>
-    <h1>Gilded Rose Inn</h1>
-
-    {cart.length === 0 ? (
-      <p>Your cart is empty</p>
-    ) : (
-      <Link href="/cart">
-        <a>You have {cart.length} items in your cart</a>
-      </Link>
-    )}
-
-    <ul>
+const Index = ({ items, cart }) => (
+  <Layout>
+    <Grid container spacing={24}>
       {items.map(item => (
-        <li key={item.id}>
-          <Link as={`/i/${item.id}`} href={`/item?id=${item.id}`}>
-            <a>{item.name}</a>
-          </Link>
-          {cart.indexOf(item.id) === -1 ? (
-            <button type="button" onClick={() => onAddItem(item.id)}>
-              Add to cart
-            </button>
-          ) : (
-            <button type="button" onClick={() => onRemoveItem(item.id)}>
-              Remove from cart
-            </button>
-          )}
-        </li>
+        <Grid key={item.id} item {...{ xs, sm, md, lg, xl }}>
+          <ConnectedItem item={item} isInCart={cart.indexOf(item) !== -1} />
+        </Grid>
       ))}
-    </ul>
-  </main>
+    </Grid>
+  </Layout>
 );
 
 Index.propTypes = {
@@ -59,8 +45,6 @@ Index.propTypes = {
     }).isRequired,
   ).isRequired,
   cart: arrayOf(string).isRequired,
-  onAddItem: func.isRequired,
-  onRemoveItem: func.isRequired,
 };
 
 Index.getInitialProps = async ({ ctx }) => {
@@ -83,19 +67,5 @@ const mapStateToProps = ({ itemReducer, cartReducer }) => ({
   cart: Object.values(cartReducer.cart),
 });
 
-/**
- * Map Redux state to <Index> component properties.
- *
- * @param {Function} dispatch - Redux action dispatcher.
- * @returns {Object} Properties for <Index> component component.
- */
-const mapDispatchToProps = dispatch => ({
-  onAddItem: id => dispatch(doAddItemToCart(id)),
-  onRemoveItem: id => dispatch(doRemoveItemFromCart(id)),
-});
-
 export { Index };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Index);
+export default connect(mapStateToProps)(Index);
