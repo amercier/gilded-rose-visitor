@@ -18,6 +18,14 @@ exports[`Item renders an item 1`] = `
     <dd />
   </dl>
   <p>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      Add to cart
+    </button>
+  </p>
+  <p>
     <Link
       href="/"
     >

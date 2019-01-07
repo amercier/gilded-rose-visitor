@@ -11,7 +11,10 @@ const itemStub = {
 
 describe('Item', () => {
   it('renders an item', () => {
-    const index = shallow(<Item item={itemStub} />);
+    const noop = () => {}; // eslint-disable-line require-jsdoc
+    const index = shallow(
+      <Item item={itemStub} cart={[]} onAddItem={noop} onRemoveItem={noop} />,
+    );
     expect(index).toMatchSnapshot();
   });
 });
@@ -20,7 +23,10 @@ describe('Item (Redux-connected)', () => {
   const mockStore = configureStore();
 
   it('uses item object from the store', () => {
-    const store = mockStore({ item: itemStub });
+    const store = mockStore({
+      itemReducer: { item: itemStub },
+      cartReducer: { cart: [] },
+    });
     const index = mount(
       <Provider store={store}>
         <ConnectedItem />
@@ -33,7 +39,10 @@ describe('Item (Redux-connected)', () => {
   describe('getInitialProps', () => {
     it('dispatches a ITEM_FETCH action', () => {
       const item = {};
-      const store = mockStore({ item });
+      const store = mockStore({
+        itemReducer: { item },
+        cartReducer: { cart: [] },
+      });
       Item.getInitialProps({ ctx: { store, query: { id: item.id } } });
       expect(store.getActions()).toEqual([doFetchItem(item.id)]);
     });

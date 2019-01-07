@@ -1,9 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Index renders a list of items 1`] = `
-<div>
+<main>
+  <h1>
+    Gilded Rose Inn
+  </h1>
   <p>
-    Hello Next.js
+    Your cart is empty
   </p>
   <ul>
     <li
@@ -17,6 +20,12 @@ exports[`Index renders a list of items 1`] = `
           ITEM A
         </a>
       </Link>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Add to cart
+      </button>
     </li>
     <li
       key="b"
@@ -29,6 +38,12 @@ exports[`Index renders a list of items 1`] = `
           ITEM B
         </a>
       </Link>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Add to cart
+      </button>
     </li>
     <li
       key="c"
@@ -41,7 +56,13 @@ exports[`Index renders a list of items 1`] = `
           ITEM C
         </a>
       </Link>
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+        Add to cart
+      </button>
     </li>
   </ul>
-</div>
+</main>
 `;

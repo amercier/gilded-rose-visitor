@@ -13,7 +13,15 @@ const itemsStub = {
 
 describe('Index', () => {
   it('renders a list of items', () => {
-    const index = shallow(<Index items={Object.values(itemsStub)} />);
+    const noop = () => {}; // eslint-disable-line require-jsdoc
+    const index = shallow(
+      <Index
+        items={Object.values(itemsStub)}
+        cart={[]}
+        onAddItem={noop}
+        onRemoveItem={noop}
+      />,
+    );
     expect(index).toMatchSnapshot();
   });
 });
@@ -22,7 +30,10 @@ describe('Index (Redux-connected)', () => {
   const mockStore = configureStore();
 
   it('uses values of items object from the store', () => {
-    const store = mockStore({ items: itemsStub });
+    const store = mockStore({
+      itemReducer: { items: itemsStub },
+      cartReducer: { cart: [] },
+    });
     const index = mount(
       <Provider store={store}>
         <ConnectedIndex />
@@ -35,14 +46,20 @@ describe('Index (Redux-connected)', () => {
   describe('getInitialProps', () => {
     it('dispatches a ITEMS_FETCH action on the server', () => {
       const items = {};
-      const store = mockStore({ items });
+      const store = mockStore({
+        itemReducer: { items },
+        cartReducer: { cart: [] },
+      });
       Index.getInitialProps({ ctx: { store, isServer: true } });
       expect(store.getActions()).toEqual([doFetchItems(items)]);
     });
 
     it('dispatches a ITEMS_POLL_START action on the client', () => {
       const items = {};
-      const store = mockStore({ items });
+      const store = mockStore({
+        itemReducer: { items },
+        cartReducer: { cart: [] },
+      });
       Index.getInitialProps({ ctx: { store, isServer: false } });
       expect(store.getActions()).toEqual([doStartPollingItems()]);
     });

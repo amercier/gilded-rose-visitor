@@ -1,29 +1,51 @@
 import React from 'react';
-import { string, number, arrayOf, shape } from 'prop-types';
+import { string, number, func, arrayOf, shape } from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
 import { doStartPollingItems, doFetchItems } from '../lib/actions/item';
+import { doAddItemToCart, doRemoveItemFromCart } from '../lib/actions/cart';
 
 /**
  * Home page.
  *
  * @param {Object} props - React component properties.
  * @param {Item[]} props.items - Items to display.
+ * @param {string[]} props.cart - ID.
+ * @param {Function} props.onAddItem - Function to call when an item is added to the cart.
+ * @param {Function} props.onRemoveItem - Function to call when an item is removed from the cart.
  * @returns {React.Element} The rendered element.
  */
-const Index = ({ items }) => (
-  <div>
-    <p>Hello Next.js</p>
+const Index = ({ items, cart, onAddItem, onRemoveItem }) => (
+  <main>
+    <h1>Gilded Rose Inn</h1>
+
+    {cart.length === 0 ? (
+      <p>Your cart is empty</p>
+    ) : (
+      <Link href="/cart">
+        <a>You have {cart.length} items in your cart</a>
+      </Link>
+    )}
+
     <ul>
       {items.map(item => (
         <li key={item.id}>
           <Link as={`/i/${item.id}`} href={`/item?id=${item.id}`}>
             <a>{item.name}</a>
           </Link>
+          {cart.indexOf(item.id) === -1 ? (
+            <button type="button" onClick={() => onAddItem(item.id)}>
+              Add to cart
+            </button>
+          ) : (
+            <button type="button" onClick={() => onRemoveItem(item.id)}>
+              Remove from cart
+            </button>
+          )}
         </li>
       ))}
     </ul>
-  </div>
+  </main>
 );
 
 Index.propTypes = {
@@ -36,6 +58,9 @@ Index.propTypes = {
       type: string.isRequired,
     }).isRequired,
   ).isRequired,
+  cart: arrayOf(string).isRequired,
+  onAddItem: func.isRequired,
+  onRemoveItem: func.isRequired,
 };
 
 Index.getInitialProps = async ({ ctx }) => {
@@ -48,14 +73,29 @@ Index.getInitialProps = async ({ ctx }) => {
 };
 
 /**
- * Map Redux state to <QualityFilter> properties.
+ * Map Redux state to <Index> component properties.
  *
  * @param {Item[]} state - Redux state.
- * @returns {Object} Properties for <QualityFilter> component.
+ * @returns {Object} Properties for <Index> component component.
  */
-const mapStateToProps = state => ({
-  items: Object.values(state.items),
+const mapStateToProps = ({ itemReducer, cartReducer }) => ({
+  items: Object.values(itemReducer.items),
+  cart: Object.values(cartReducer.cart),
+});
+
+/**
+ * Map Redux state to <Index> component properties.
+ *
+ * @param {Function} dispatch - Redux action dispatcher.
+ * @returns {Object} Properties for <Index> component component.
+ */
+const mapDispatchToProps = dispatch => ({
+  onAddItem: id => dispatch(doAddItemToCart(id)),
+  onRemoveItem: id => dispatch(doRemoveItemFromCart(id)),
 });
 
 export { Index };
-export default connect(mapStateToProps)(Index);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Index);
