@@ -5,7 +5,9 @@ exports[`Layout renders a list of items 1`] = `
   <WithStyles(CssBaseline) />
   <Connect(Header) />
   <Layout__Container>
-    CONTENT
+    <FadeIn>
+      CONTENT
+    </FadeIn>
   </Layout__Container>
 </Fragment>
 `;

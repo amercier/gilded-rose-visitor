@@ -35,6 +35,7 @@ export default class Document extends NextDocument {
             content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
           />
           {this.props.styleTags}
+          <link rel="stylesheet" href="/nprogress.css" />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"

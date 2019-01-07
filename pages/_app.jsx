@@ -1,9 +1,15 @@
 import React from 'react';
-import App, { Container } from 'next/app';
 import { Provider } from 'react-redux';
+import App, { Container } from 'next/app';
+import Router from 'next/router';
+import NProgress from 'nprogress';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import makeStore from '../lib/store';
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 /**
  * Redux-connected app, using next-redux-wrapper.

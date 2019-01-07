@@ -1,6 +1,7 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import styled from 'styled-components';
+import FadeIn from 'react-fade-in';
 import ConnectedHeader from './Header';
 
 const Container = styled.div`
@@ -23,7 +24,9 @@ const Layout = ({ children }) => (
   <>
     <CssBaseline />
     <ConnectedHeader />
-    <Container>{children}</Container>
+    <Container>
+      <FadeIn>{children}</FadeIn>
+    </Container>
   </>
 );
 
