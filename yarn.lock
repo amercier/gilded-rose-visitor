@@ -5913,6 +5913,10 @@ react-event-listener@^0.6.2:
     prop-types "^15.6.0"
     warning "^4.0.1"
 
+react-fade-in@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/react-fade-in/-/react-fade-in-0.1.6.tgz#59efdd54c3ddc7b1dbe0c7a2993f4efe4af4049f"
+
 react-is@^16.3.2, react-is@^16.6.0, react-is@^16.6.1, react-is@^16.6.3, react-is@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
