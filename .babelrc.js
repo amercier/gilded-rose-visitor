@@ -25,5 +25,15 @@ module.exports = {
       },
     ],
   ],
-  plugins: [['transform-define', env]],
+  plugins: [
+    ['transform-define', env],
+    [
+      'styled-components',
+      {
+        ssr: true,
+        displayName: true,
+        preprocess: false,
+      },
+    ],
+  ],
 };
