@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders the header 1`] = `
+<WithStyles(AppBar)
+  position="static"
+>
+  <WithStyles(Toolbar)>
+    <Header__Container>
+      <Link
+        href="/"
+      >
+        <WithStyles(Button)
+          color="inherit"
+        >
+          <WithStyles(Typography)
+            color="inherit"
+            noWrap={true}
+            style={
+              Object {
+                "lineHeight": "64px",
+              }
+            }
+            variant="h6"
+          >
+            Gilded Rose Inn
+          </WithStyles(Typography)>
+        </WithStyles(Button)>
+      </Link>
+      <Header__ButtonBar>
+        <Link
+          href="/cart"
+        >
+          <WithStyles(IconButton)
+            color="inherit"
+          >
+            <WithStyles(Badge)
+              badgeContent={10}
+              color="secondary"
+              invisible={false}
+            >
+              <pure(ShoppingCartIcon) />
+            </WithStyles(Badge)>
+          </WithStyles(IconButton)>
+        </Link>
+      </Header__ButtonBar>
+    </Header__Container>
+  </WithStyles(Toolbar)>
+</WithStyles(AppBar)>
+`;
