@@ -13,7 +13,7 @@ before_deploy:
   - |
     echo '{
       "version": 2,
-      "builds": [{ "src": "package.json", "use": "@now/next" }]
+      "builds": [{ "src": "package.json", "use": "@now/next" }],
       "routes": [
         { "src": "/i/(?<id>[^/]*)", "dest": "/item?id=$id" }
       ]
