@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart renders a list of items 1`] = `
+<main>
+  <h1>
+    Your cart
+  </h1>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Item
+        </th>
+        <th>
+          Type
+        </th>
+        <th>
+          Quality
+        </th>
+        <th>
+          Price
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        key="a"
+      >
+        <td>
+          <Link
+            as="/i/a"
+            href="/item?id=a"
+          >
+            <a>
+              ITEM A
+            </a>
+          </Link>
+        </td>
+        <td>
+          STANDARD
+        </td>
+        <td>
+          10
+        </td>
+        <td>
+          10
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            type="button"
+          >
+            Remove from cart
+          </button>
+        </td>
+      </tr>
+      <tr
+        key="b"
+      >
+        <td>
+          <Link
+            as="/i/b"
+            href="/item?id=b"
+          >
+            <a>
+              ITEM B
+            </a>
+          </Link>
+        </td>
+        <td>
+          STANDARD
+        </td>
+        <td>
+          20
+        </td>
+        <td>
+          20
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            type="button"
+          >
+            Remove from cart
+          </button>
+        </td>
+      </tr>
+      <tr
+        key="c"
+      >
+        <td>
+          <Link
+            as="/i/c"
+            href="/item?id=c"
+          >
+            <a>
+              ITEM C
+            </a>
+          </Link>
+        </td>
+        <td>
+          LEGENDARY
+        </td>
+        <td>
+          30
+        </td>
+        <td>
+          30
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+            type="button"
+          >
+            Remove from cart
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>
+          TOTAL
+        </th>
+        <th />
+        <th />
+        <th>
+          60
+        </th>
+        <th />
+      </tr>
+    </tfoot>
+  </table>
+  <p>
+    <button
+      type="button"
+    >
+      Proceed to checkout
+    </button>
+  </p>
+  <p>
+    <Link
+      href="/"
+    >
+      <a>
+        Go back to shopping.
+      </a>
+    </Link>
+  </p>
+</main>
+`;

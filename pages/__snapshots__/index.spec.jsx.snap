@@ -5,6 +5,9 @@ exports[`Index renders a list of items 1`] = `
   <h1>
     Gilded Rose Inn
   </h1>
+  <p>
+    Your cart is empty
+  </p>
   <ul>
     <li
       key="a"

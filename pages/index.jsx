@@ -18,6 +18,15 @@ import { doAddItemToCart, doRemoveItemFromCart } from '../lib/actions/cart';
 const Index = ({ items, cart, onAddItem, onRemoveItem }) => (
   <main>
     <h1>Gilded Rose Inn</h1>
+
+    {cart.length === 0 ? (
+      <p>Your cart is empty</p>
+    ) : (
+      <Link href="/cart">
+        <a>You have {cart.length} items in your cart</a>
+      </Link>
+    )}
+
     <ul>
       {items.map(item => (
         <li key={item.id}>
