@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import { mount, shallow } from 'enzyme';
-import { doStartPollingItems, doFetchItems } from '../lib/actions/item';
+import { doFetchItems } from '../lib/actions/item';
 import ConnectedIndex, { Index } from '.';
 
 const itemsStub = {
@@ -52,16 +52,6 @@ describe('Index (Redux-connected)', () => {
       });
       Index.getInitialProps({ ctx: { store, isServer: true } });
       expect(store.getActions()).toEqual([doFetchItems(items)]);
-    });
-
-    it('dispatches a ITEMS_POLL_START action on the client', () => {
-      const items = {};
-      const store = mockStore({
-        itemReducer: { items },
-        cartReducer: { cart: [] },
-      });
-      Index.getInitialProps({ ctx: { store, isServer: false } });
-      expect(store.getActions()).toEqual([doStartPollingItems()]);
     });
   });
 });

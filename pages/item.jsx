@@ -61,7 +61,7 @@ Item.defaultProps = {
 Item.getInitialProps = async ({ ctx }) => {
   const { store, query } = ctx;
 
-  // Start items polling on the browser, or 1 fetch if server-side
+  // Fetch item details now
   store.dispatch(doFetchItem(query.id));
 
   return {};

@@ -11,7 +11,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import styled from 'styled-components';
-import { doStartPollingItems, doFetchItems } from '../lib/actions/item';
+import { doFetchItems } from '../lib/actions/item';
 import { doRemoveItemFromCart } from '../lib/actions/cart';
 import Layout from '../components/Layout';
 import Type from '../components/Type';
@@ -127,10 +127,10 @@ Cart.propTypes = {
 };
 
 Cart.getInitialProps = async ({ ctx }) => {
-  const { store, isServer } = ctx;
+  const { store } = ctx;
 
-  // Start items polling on the browser, or 1 fetch if server-side
-  store.dispatch(isServer ? doFetchItems() : doStartPollingItems());
+  // Fetch items now
+  store.dispatch(doFetchItems());
 
   return {};
 };
