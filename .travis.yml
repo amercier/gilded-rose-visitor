@@ -11,14 +11,7 @@ after_success:
 before_deploy:
   - yarn remove eslint-config-react-redux # Incompatible with Node 8
   - yarn global add now-cli
-  - |
-    echo '{
-      "version": 2,
-      "builds": [{ "src": "package.json", "use": "@now/next" }],
-      "routes": [
-        { "src": "/i/(?<id>[^/]*)", "dest": "/item?id=$id" }
-      ]
-    }' > now.json
+  - node -e "console.log(JSON.stringify(require('./now')))" > now.json
 deploy:
   provider: script
   script: >
