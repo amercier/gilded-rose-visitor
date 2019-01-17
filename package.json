@@ -37,7 +37,7 @@
     "enzyme-adapter-react-16": "^1.7.1",
     "escape-string-regexp": "^1.0.5",
     "eslint": "^5.11.1",
-    "eslint-config-jsdoc-strict": "^1.0.0",
+    "eslint-config-jsdoc-strict": "^2.0.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-config-react-redux": "^1.0.6",
     "eslint-plugin-jsdoc": "^4.0.0",
