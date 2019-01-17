@@ -2656,9 +2656,10 @@ eslint-config-airbnb@17.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-config-jsdoc-strict@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-jsdoc-strict/-/eslint-config-jsdoc-strict-1.0.0.tgz#dbb4d8facd6fdb57b4027473a2b0e435fbe2794c"
+eslint-config-jsdoc-strict@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-jsdoc-strict/-/eslint-config-jsdoc-strict-2.0.0.tgz#e2a914178d0e3ff4d9843915afcd173904f6c417"
+  integrity sha512-ACuC7F0uNW/iNk9qF+JqOmJeTyV+tpXrncgLlpBCU0PPxjFN6GtiOLrZ5m45wQFLeRhDzdsxj8U86xbiCedeOg==
 
 eslint-config-prettier@^3.3.0:
   version "3.3.0"
