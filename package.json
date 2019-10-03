@@ -16,7 +16,7 @@
     "nprogress": "^0.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.10.2",
-    "react-dom": "^16.7.0",
+    "react-dom": "^16.10.2",
     "react-fade-in": "^0.1.6",
     "react-redux": "^6.0.0",
     "redux": "^4.0.1",
