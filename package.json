@@ -5,7 +5,7 @@
     "@material-ui/icons": "^3.0.1",
     "cross-env": "^5.2.0",
     "enzyme": "^3.8.0",
-    "enzyme-to-json": "^3.3.5",
+    "enzyme-to-json": "^3.5.0",
     "isomorphic-unfetch": "^3.0.0",
     "koa": "^2.6.2",
     "koa-router": "^7.4.0",
